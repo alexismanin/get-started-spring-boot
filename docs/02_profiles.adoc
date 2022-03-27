@@ -1,0 +1,4 @@
+== Spring profiles
+
+.Profiles
+image::assets/profiles.svg[]

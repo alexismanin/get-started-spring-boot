@@ -1,0 +1,4 @@
+= Get started with Spring Boot
+
+include::01_principles.adoc[Principles]
+include::02_profiles.adoc[Spring profiles]

@@ -1,0 +1,8 @@
+== What is Spring Framework ?
+
+* Centralize development around the principle of *Inversion of Control*
+* Heavily rely on *dependency injection*
+
+.Dependency injection
+image::assets/spring_dep_inj.svg[]
+
