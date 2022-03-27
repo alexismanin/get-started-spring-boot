@@ -1,0 +1,11 @@
+= Get started with Spring Boot
+
+== What you will learn
+
+ * Create a simple Spring Boot application
+ * How to use Spring *profiles* to custom deployed components
+ * How to use Spring https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config[external configuration] to customize environment settings/properties
+ * An introduction to Webflux engine
+ * An introduction to RSocket
+
+WORK IN PROGRESS
