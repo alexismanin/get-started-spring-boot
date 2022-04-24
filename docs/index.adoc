@@ -2,3 +2,4 @@
 
 include::01_principles.adoc[Principles]
 include::02_profiles.adoc[Spring profiles]
+include::03_spring_boot.adoc[Externalized configuration]
