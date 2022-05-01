@@ -1,0 +1,17 @@
+== Exercise
+
+For practice, we will create a very simple client/server Hello world program.
+
+We will make two applications:
+ * One that provide an HTTP Get endpoint that send "Hello" plain text response.
+ * Another that will call the API above, and print it in the console.
+
+=== Step 1 : create the project
+
+First and foremost, we'll use https://start.spring.io[Spring online starter] to create a simple application with *Reactive web* support.
+
+. Go to the linked page
+. choose your preferred language and build system (radio buttons on the left)
+. Specify a package, title, etc.
+. On the right side, use *add dependencies* button to search and add *Reactive web*.
+. Download the project template with *Generate* button at the bottom of the page
