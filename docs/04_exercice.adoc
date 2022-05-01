@@ -15,3 +15,12 @@ First and foremost, we'll use https://start.spring.io[Spring online starter] to 
 . Specify a package, title, etc.
 . On the right side, use *add dependencies* button to search and add *Reactive web*.
 . Download the project template with *Generate* button at the bottom of the page
+
+=== Step 2: Web service
+
+. Then, we will add a REST controller with a "hello" method.
+.. Create a class *HelloService*. Annotate it with `@RestController`.
+.. Add a method returning a `Mono<String>` and annotate it with `@GetMapping`
+.. Fill its body to "just" return a constant message (hint: look at the Mono API).
+
+You can test it by opening browser on link:http:localhost:8080/hello[].
