@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
 import reactor.core.publisher.Mono
+import java.time.Duration
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties::class)
@@ -31,7 +32,12 @@ class HelloService(val props: AppProperties) {
 
 	@GetMapping("hello")
 	fun hello(@RequestHeader(HttpHeaders.REFERER, defaultValue = "anonymous") referer : String) : Mono<String> {
-		return Mono.just("Hello from ${props.name} to $referer !")
+		return props.delayAction {
+			Mono.just("Hello from ${props.name} to $referer !")
+		}
+			.timed()
+			.doOnNext { println("delayed ${it.elapsed()} ms") }
+			.map { it.get() }
 	}
 }
 
@@ -41,16 +47,25 @@ class HelloClient(@Value("\${server.port}") val port: Int, val props: AppPropert
 	val cli = WebClient.create()
 
 	override fun run(vararg args: String?) {
-		val msg = cli.get().uri("http://localhost:$port/hello")
+		val msg = props.delayAction(::hello).timed().block()
+			?: throw java.lang.RuntimeException("RESPONSE IS NULL !")
+		println("Message received in ${msg.elapsed().toMillis()} ms: ${msg.get()}")
+	}
+
+	private fun hello() : Mono<String> {
+		return cli.get().uri("http://localhost:$port/hello")
 			.header(HttpHeaders.REFERER, props.name)
 			.retrieve()
-			.bodyToMono<String>()
-			.block()
-
-		println(msg)
+			.bodyToMono()
 	}
 }
 
 @ConfigurationProperties("app")
 @ConstructorBinding
-data class AppProperties(val name: String)
+data class AppProperties(val name: String, val delay: Duration?)
+
+private fun <T> AppProperties.delayAction(action: () -> Mono<T>) : Mono<T> {
+	return Mono.justOrEmpty(delay)
+		.flatMap { Mono.delay(it) }
+		.then(Mono.defer(action))
+}
