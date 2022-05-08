@@ -55,3 +55,18 @@ Let'see an example: imagine we want to configure a limite rate for server respon
 .. make delay optional, and provide a null value to the client, so only the server will add a delay on its response time.
 .. Define a different delay for both client and server
 .. Print delayed amount of time (tip: look at https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#timed--[Mono.timed()])
+
+=== Step 6 (Bonus): RSocket
+
+Now, let's try to do some streaming. We will implement a very simple message exchange:
+
+. Client will send a request for a "countdown" to the server.
+. Server will perform requested countdown, sending a flow of decrementing values from 5 to 1, each delayed by a constant time (that you could configure with a delay).
+. At the end of the countdown, server will respond "hello".
+
+To do that, we'll have to:
+
+. Add RSocket starter to the project.
+. Modify HelloService with `@MessageMapping` annotated method, to handle countdowns.
+. Add a RSocket client in client app.
+. Configure RSocket server port
