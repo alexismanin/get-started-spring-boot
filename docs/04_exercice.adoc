@@ -43,3 +43,15 @@ Now that we have a working couple of services answering each other, we will add 
 .. Server will display it in its response.
 .. As a bonus, try to retrieve client request referer and display it in response message.
 . Then, we will "bind" the standard `spring.application.name` to our `app-name` concatenated with the active profile. We will use the capability to give as variable value  property names to resolve later
+
+=== Step 5: add a delay
+
+Externalized configuration can do type conversion, so you can rely directly on property model, rather than using it as an intermediate representation only.
+Let'see an example: imagine we want to configure a limite rate for server responses. We can use externalize configuration to provide a delay before answering a request.
+
+. Add a `delay` properties of type `java.time.Duration` in application properties.
+. Inject it / use it in both client and server to force delaying request/response.
+. Bonus:
+.. make delay optional, and provide a null value to the client, so only the server will add a delay on its response time.
+.. Define a different delay for both client and server
+.. Print delayed amount of time (tip: look at https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#timed--[Mono.timed()])
