@@ -24,3 +24,12 @@ First and foremost, we'll use https://start.spring.io[Spring online starter] to 
 .. Fill its body to "just" return a constant message (hint: look at the Mono API).
 
 You can test it by opening browser on link:http:localhost:8080/hello[].
+
+=== Step 3: Web client and profiles
+
+Now, we want a Spring Boot app as client. To do so, we will keep using our app, but:
+
+. We will add a new client component. It will be a command line program, doing a one-shot execution.
+.. Tip 1: look at https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html[CommandLineRunner] or https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationRunner.html[ApplicationRunner] interfaces.
+.. Tip 2: When running our app as a one-shot command, we do not want it https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.application.non-web-application[to start a web service environment].
+. To run server and client separately, we have to associate different profiles to our server and client components.
