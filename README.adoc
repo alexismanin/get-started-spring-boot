@@ -8,4 +8,16 @@
  * An introduction to Webflux engine
  * An introduction to RSocket
 
-WORK IN PROGRESS
+== Requirements
+
+ * A JDK 8 or superior (I recommend at least 17)
+ * An IDE (IntelliJ, NetBeans, etc.)
+
+== Start practice:
+
+The main branch head contains all code and documentation.
+To start practice, you can checkout tag *practice-start*.
+From this tag, each commit to main head is a succession of practice instructions and solutions.
+
+*Tip*: launch Spring boot app with a dedicated profile:
+`gradle bootRun --args="--spring.profiles.active=$PROFILE"`
