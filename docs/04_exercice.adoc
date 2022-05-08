@@ -33,3 +33,13 @@ Now, we want a Spring Boot app as client. To do so, we will keep using our app, 
 .. Tip 1: look at https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html[CommandLineRunner] or https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationRunner.html[ApplicationRunner] interfaces.
 .. Tip 2: When running our app as a one-shot command, we do not want it https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto.application.non-web-application[to start a web service environment].
 . To run server and client separately, we have to associate different profiles to our server and client components.
+
+=== Step 4: exchange names
+
+Now that we have a working couple of services answering each other, we will add custom behavior to familiarize with external variables.
+
+. First, we will define a common property to both client and server: `app.name`.
+.. Client will use its name as referer.
+.. Server will display it in its response.
+.. As a bonus, try to retrieve client request referer and display it in response message.
+. Then, we will "bind" the standard `spring.application.name` to our `app-name` concatenated with the active profile. We will use the capability to give as variable value  property names to resolve later
